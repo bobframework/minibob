@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>miniBOB.js</title>
+    <script type="module">
+        import { startMiniBOB, getData, setData, setMethods, setEffect } from "./index.js";
+        setData({
+            name: "bob",
+            age: 17,
+            msg: ""
+        });
+        setMethods({
+            add: () => {
+                setData({
+                    age: getData("age") + 1
+                })
+            },
+            sub: () => {
+                setData({
+                    age: getData("age") - 1
+                })
+            }
+        });
+        setEffect({
+            age: (_new, _old) => {
+                if (_new >= 18) {
+                    setData({
+                        msg: "Welcome to adult world !"
+                    })
+                } else {
+                    setData({
+                        msg: ""
+                    })
+                }
+            }
+        });
+        startMiniBOB();
+    </script>
+    <style>
+        body {
+            width: 90%;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        fieldset {
+            border: none;
+            width: 100%;
+            background: #ccc;
+            padding: 0px;
+            position: relative;
+            margin: 40px auto;
+            gap: 10px;
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        fieldset legend {
+            background: #ccc;
+            padding: 10px;
+            font-weight: bold;
+            position: absolute;
+            left: 0px;
+            top: -20px;
+        }
+
+        .pan {
+            width: auto;
+            display: flex;
+            margin: 20px auto;
+            align-items: center;
+        }
+
+        label {
+            width: 50px;
+            display: inline-block;
+        }
+
+        h2,
+        .clip-text {
+            font-size: 70px;
+            font-weight: 100;
+            font-family: Inter, sans-serif;
+            text-align: center;
+            color: transparent;
+            /* Color fallback */
+            /* background: linear-gradient(180deg, #fff, #aaa), #fff; */
+            background: linear-gradient(180deg, #c690d6, #ff6511), #fff;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+
+<body>
+    <template name="minibob-app">
+        <style>
+            .wrapper {
+                margin: 10px auto;
+            }
+        </style>
+        <div class="wrapper">
+            <slot></slot>
+        </button>
+    </template>
+
+    <minibob-app>
+        <h2>MiniBOB.js</h2>
+        <p><span>My name is </span><b minibob-mark="name"></b>, I am <minibob-age minibob-mark="age"></minibob-age>
+            years old.
+        </p>
+        <p minibob-mark="msg"></p>
+        <fieldset>
+            <legend>setting</legend>
+            <div class="pan">
+                <label>Name: </label><input minibob-bind="name" />
+            </div>
+            <div class="pan">
+                <label>Age: </label>
+                <div><miniminibob-button minibob-click="add">+1</miniminibob-button><miniminibob-button
+                        minibob-click="sub">-1</miniminibob-button></div>
+
+            </div>
+        </fieldset>
+    </minibob-app>
+</body>
+
+</html>
