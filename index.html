@@ -54,10 +54,8 @@
             padding: 0px;
             position: relative;
             margin: 40px auto;
-            gap: 10px;
-            display: flex;
-            flex-direction: column;
             text-align: left;
+            padding: 10px;
         }
 
         fieldset legend {
@@ -81,6 +79,12 @@
             display: inline-block;
         }
 
+        input {
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+        }
+
         h2,
         .clip-text {
             font-size: 70px;
@@ -95,6 +99,10 @@
             background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+
+        button {
+            padding: 5px;
+        }
     </style>
 </head>
 
@@ -107,7 +115,7 @@
         </style>
         <div class="wrapper">
             <slot></slot>
-        </button>
+        </div>
     </template>
 
     <minibob-app>
@@ -123,9 +131,10 @@
             </div>
             <div class="pan">
                 <label>Age: </label>
-                <div><miniminibob-button minibob-click="add">+1</miniminibob-button><miniminibob-button
-                        minibob-click="sub">-1</miniminibob-button></div>
-
+                <div>
+                    <button minibob-click="add">+1</button>
+                    <button minibob-click="sub">-1</button>
+                </div>
             </div>
         </fieldset>
     </minibob-app>
